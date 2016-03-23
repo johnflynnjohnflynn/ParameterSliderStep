@@ -25,17 +25,18 @@ public:
     ParameterSliderStep (AudioProcessorParameter& p)
         : ParameterSlider (p)
     {
-        if (p.getNumSteps() > 0) // getNumSteps() gives -2147483648 if continuous
-        {
-            const float normStepSize = 1.0 / p.getNumSteps();
+        jassert (p.getNumSteps() > 0);  // Ensure this is stepped parameter
+                                        // (getNumSteps() gives -2147483648 if
+                                        // continuous.)
 
-            setRange (0.0, 1.0, normStepSize);  // override setRange continuous
-                                                // in ParameterSlider xtor
+        const float normStepSize = 1.0 / p.getNumSteps();
 
-            updateSliderPos();                  // update position
-                                                // (timer already started in
-                                                // ParameterSlider xtor)
-        }
+        setRange (0.0, 1.0, normStepSize);  // override setRange continuous
+                                            // in ParameterSlider xtor
+
+        updateSliderPos();                  // update position
+                                            // (timer already started in
+                                            // ParameterSlider xtor)
     }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ParameterSliderStep)
