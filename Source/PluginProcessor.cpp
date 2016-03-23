@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-AudioProcessorParameterPluginAudioProcessor::AudioProcessorParameterPluginAudioProcessor()
+ParameterSliderStepPluginAudioProcessor::ParameterSliderStepPluginAudioProcessor()
     : floatParam_ {nullptr}
 {
     // addParameter()s to the processor's OwnedArray<AudioProcessorParameter>
@@ -24,13 +24,13 @@ AudioProcessorParameterPluginAudioProcessor::AudioProcessorParameterPluginAudioP
     // NonMember::printParams (*this);  // debugging
 }
 
-AudioProcessorParameterPluginAudioProcessor::~AudioProcessorParameterPluginAudioProcessor()
+ParameterSliderStepPluginAudioProcessor::~ParameterSliderStepPluginAudioProcessor()
 {
     floatParam_ = nullptr;
 }
 
 //==============================================================================
-bool AudioProcessorParameterPluginAudioProcessor::acceptsMidi() const
+bool ParameterSliderStepPluginAudioProcessor::acceptsMidi() const
 {
    #if JucePlugin_WantsMidiInput
     return true;
@@ -39,7 +39,7 @@ bool AudioProcessorParameterPluginAudioProcessor::acceptsMidi() const
    #endif
 }
 
-bool AudioProcessorParameterPluginAudioProcessor::producesMidi() const
+bool ParameterSliderStepPluginAudioProcessor::producesMidi() const
 {
    #if JucePlugin_ProducesMidiOutput
     return true;
@@ -49,19 +49,19 @@ bool AudioProcessorParameterPluginAudioProcessor::producesMidi() const
 }
 
 //==============================================================================
-void AudioProcessorParameterPluginAudioProcessor::prepareToPlay (double /*sampleRate*/, int /*samplesPerBlock*/)
+void ParameterSliderStepPluginAudioProcessor::prepareToPlay (double /*sampleRate*/, int /*samplesPerBlock*/)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 }
 
-void AudioProcessorParameterPluginAudioProcessor::releaseResources()
+void ParameterSliderStepPluginAudioProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
 
-void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& /*midiMessages*/)
+void ParameterSliderStepPluginAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& /*midiMessages*/)
 {
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
@@ -81,13 +81,13 @@ void AudioProcessorParameterPluginAudioProcessor::processBlock (AudioSampleBuffe
 }
 
 //==============================================================================
-AudioProcessorEditor* AudioProcessorParameterPluginAudioProcessor::createEditor()
+AudioProcessorEditor* ParameterSliderStepPluginAudioProcessor::createEditor()
 {
-    return new AudioProcessorParameterPluginAudioProcessorEditor (*this);
+    return new ParameterSliderStepPluginAudioProcessorEditor (*this);
 }
 
 //==============================================================================
-void AudioProcessorParameterPluginAudioProcessor::getStateInformation (MemoryBlock& destData)
+void ParameterSliderStepPluginAudioProcessor::getStateInformation (MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
@@ -108,7 +108,7 @@ void AudioProcessorParameterPluginAudioProcessor::getStateInformation (MemoryBlo
     copyXmlToBinary (xml, destData);
 }
 
-void AudioProcessorParameterPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void ParameterSliderStepPluginAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
@@ -133,7 +133,7 @@ void AudioProcessorParameterPluginAudioProcessor::setStateInformation (const voi
 // This creates new instances of the plugin..
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
-    return new AudioProcessorParameterPluginAudioProcessor();
+    return new ParameterSliderStepPluginAudioProcessor();
 }
 
 

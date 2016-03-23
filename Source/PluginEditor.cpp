@@ -13,7 +13,7 @@
 
 
 //==============================================================================
-AudioProcessorParameterPluginAudioProcessorEditor::AudioProcessorParameterPluginAudioProcessorEditor (AudioProcessorParameterPluginAudioProcessor& p)
+ParameterSliderStepPluginAudioProcessorEditor::ParameterSliderStepPluginAudioProcessorEditor (ParameterSliderStepPluginAudioProcessor& p)
     : AudioProcessorEditor (&p),
       floatLabel_ {String::empty, "AudioParameterFloatStep - ParameterSliderStep"}, // (No component name, just set label text)
       floatSlider_ {*p.getParameters()[floatName]},
@@ -29,17 +29,17 @@ AudioProcessorParameterPluginAudioProcessorEditor::AudioProcessorParameterPlugin
     setSize (512, height);                          // would be better here!
 }
 
-AudioProcessorParameterPluginAudioProcessorEditor::~AudioProcessorParameterPluginAudioProcessorEditor()
+ParameterSliderStepPluginAudioProcessorEditor::~ParameterSliderStepPluginAudioProcessorEditor()
 {
 }
 
 //==============================================================================
-void AudioProcessorParameterPluginAudioProcessorEditor::paint (Graphics& g)
+void ParameterSliderStepPluginAudioProcessorEditor::paint (Graphics& g)
 {
     g.fillAll (Colours::lightgrey);
 }
 
-void AudioProcessorParameterPluginAudioProcessorEditor::resized()
+void ParameterSliderStepPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
