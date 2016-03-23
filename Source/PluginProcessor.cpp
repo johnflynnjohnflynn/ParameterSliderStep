@@ -14,22 +14,19 @@
 
 //==============================================================================
 AudioProcessorParameterPluginAudioProcessor::AudioProcessorParameterPluginAudioProcessor()
-    : boolParam_  {nullptr},
-      floatParam_ {nullptr},
-      intParam_   {nullptr}
+    : floatParam_ {nullptr}
 {
     // addParameter()s to the processor's OwnedArray<AudioProcessorParameter>
     // managedParameters (which takes ownership and deletes appropriately)
-    addParameter (boolParam_  = new AudioParameterBool  {"BoolID", "Bool", false});
     NormalisableRange<float> range {-24.0f, 0.0f, 1.5f};
-    addParameter (floatParam_ = new AudioParameterFloat {"FloatID", "Float", range, 0.0f});
-    addParameter (intParam_   = new AudioParameterInt   {"IntID",   "Int",   -10,   10,    0});
+    addParameter (floatParam_ = new AudioParameterFloatStep {"FloatID", "Float", range, 0.0f});
 
-    NonMember::printParams (*this);
+    // NonMember::printParams (*this);  // debugging
 }
 
 AudioProcessorParameterPluginAudioProcessor::~AudioProcessorParameterPluginAudioProcessor()
 {
+    floatParam_ = nullptr;
 }
 
 //==============================================================================

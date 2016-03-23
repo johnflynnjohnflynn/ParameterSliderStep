@@ -12,6 +12,7 @@
 #define PLUGINPROCESSOR_H_INCLUDED
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "AudioParameterFloatStep.h"
 
 
 //==============================================================================
@@ -53,9 +54,9 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    AudioParameterBool*  boolParam_;    // Raw pointers here. Processor's
-    AudioParameterFloat* floatParam_;   // managedParameters OwnedArray
-    AudioParameterInt*   intParam_;     // owns and manages. (See xtor.)
+    AudioParameterFloatStep* floatParam_;   // Raw pointers here. Processor's
+                                            // managedParameters OwnedArray
+                                            // owns and manages. (See xtor.)
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AudioProcessorParameterPluginAudioProcessor)

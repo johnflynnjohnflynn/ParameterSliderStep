@@ -13,7 +13,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-#include "ParameterSlider.h"
+#include "ParameterSliderStep.h"
 
 
 //==============================================================================
@@ -32,17 +32,11 @@ public:
 private:
     enum SymbolicIndexNames     // Allow use of symbolic names instead
     {                           // of managedParameters indices.
-        boolName,               // Must have the same ordering as
-        floatName,              // processor's managedParameters!!!
-        intName
-    };
+        floatName               // Must have the same ordering as
+    };                          // processor's managedParameters!!!
 
-    Label boolLabel_;
     Label floatLabel_;
-    Label intLabel_;
-    ParameterSlider boolSlider_;
-    ParameterSlider floatSlider_;
-    ParameterSlider intSlider_;
+    ParameterSliderStep floatSlider_;
 
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
