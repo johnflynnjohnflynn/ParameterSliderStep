@@ -17,7 +17,9 @@
 //==============================================================================
 /**
     Subclass of ParameterSlider that allows stepped controls when used in 
-    conjunction with AudioParameterFloatStep
+    conjunction with AudioParameterFloatStep.
+    
+    Assert a reasonable number of steps (otherwise just use ParameterSlider).
 */
 class ParameterSliderStep   : public ParameterSlider
 {
@@ -25,11 +27,10 @@ public:
     ParameterSliderStep (AudioProcessorParameter& p)
         : ParameterSlider (p)
     {
-        jassert (p.getNumSteps() > 0);  // Ensure this is stepped parameter
-                                        // (getNumSteps() gives -2147483648 if
-                                        // continuous.)
+        jassert (0 < p.getNumSteps() && p.getNumSteps() < 100); // Reasonable
+                                                                // num of steps
 
-        const float normStepSize = 1.0 / p.getNumSteps();
+        const float normStepSize = 1.0f / p.getNumSteps();
 
         setRange (0.0, 1.0, normStepSize);  // override setRange continuous
                                             // in ParameterSlider xtor
