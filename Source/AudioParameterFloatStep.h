@@ -14,7 +14,7 @@
 
 //==============================================================================
 /**
-    Subclass of ParameterSlider that allows stepped controls when used in 
+    Subclass of AudioParameterFloat that allows stepped controls when used in 
     conjunction with ParameterSliderStep. (Overrides getNumSteps() method.)
 */
 class AudioParameterFloatStep   : public AudioParameterFloat
