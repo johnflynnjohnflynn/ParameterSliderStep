@@ -20,7 +20,13 @@
 class AudioParameterFloatStep   : public AudioParameterFloat
 {
 public:
-    using AudioParameterFloat::AudioParameterFloat; // using APF's constructor
+    AudioParameterFloatStep (String pid, String nm, NormalisableRange<float> r, float def)
+       : AudioParameterFloat {pid, nm, r, def}
+    {
+    }
+
+    //using AudioParameterFloat::AudioParameterFloat; // using APF's constructor C++11
+                                                      // not compatible with MSVS 2013
 
     int getNumSteps() const
     {
